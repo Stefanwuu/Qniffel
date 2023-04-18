@@ -6,7 +6,7 @@ This is a project containing two main parts: the training of a reinforcement lea
 
 ## training
 The training utilizes the Q-learning algorithm. (to be continued)
-- ** performance **
+- **performance**
 
 ## iOS APP
-- ** functionality **
+- **functionality**
