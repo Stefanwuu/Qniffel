@@ -14,27 +14,21 @@ from training.kniffelEngine import Kniffel, Category
 log = logging.getLogger(__name__)
 
 
-class GameType(Enum):
-    SUDDEN_DEATH = 0,
-    RETRY_ON_WRONG_ACTION = 1
-
-
-def get_score(score: Optional[int]) -> int:
-    return score if score is not None else -1
+def get_score(score: Optional[int]) -> np.ndarray:
+    return np.array([score], dtype=np.int16) if score is not None else np.array([-1], dtype=np.int16)
 
 
 class KniffelSingleEnv(Env):
-    metadata = {'render.modes': ['human']}
+    metadata = {'render_modes': ['human'], 'render_fps': 1}
 
-    def __init__(self,
-                 game_type: GameType = GameType.RETRY_ON_WRONG_ACTION,
-                 seed=None):
+    def __init__(self, seed=None, render_mode='human'):
         self.kniffel = Kniffel(seed=seed)
-        self.game_type = game_type
         self.action_space = spaces.Discrete(44)
+        assert render_mode is None or render_mode in self.metadata['render_modes']
+        self.render_mode = render_mode
         self.observation_space = spaces.Tuple((
             spaces.Discrete(13),  # round
-            spaces.Discrete(4),  # sub-round
+            spaces.Discrete(3),  # sub-round
             spaces.Box(low=1, high=6, shape=(1,), dtype=np.uint8),  # die 1
             spaces.Box(low=1, high=6, shape=(1,), dtype=np.uint8),  # die 2
             spaces.Box(low=1, high=6, shape=(1,), dtype=np.uint8),  # die 3
@@ -54,7 +48,7 @@ class KniffelSingleEnv(Env):
             spaces.Box(low=-1, high=30, shape=(1,), dtype=np.int16),  # chance
             spaces.Box(low=-1, high=50, shape=(1,), dtype=np.int16),  # kniffel
             spaces.Box(low=-1, high=35, shape=(1,), dtype=np.int16),  # upper bonus
-            spaces.Box(low=-1, high=1200, shape=(1,), dtype=np.int16),  # kniffel bonus
+            spaces.Box(low=-1, high=600, shape=(1,), dtype=np.int16),  # kniffel bonus
         ))
 
     def get_observation_space(self):
@@ -62,11 +56,11 @@ class KniffelSingleEnv(Env):
         return (
             kniffel.round,
             kniffel.sub_round,
-            kniffel.dice[0],
-            kniffel.dice[1],
-            kniffel.dice[2],
-            kniffel.dice[3],
-            kniffel.dice[4],
+            np.array([kniffel.dice[0]], dtype=np.uint8),
+            np.array([kniffel.dice[1]], dtype=np.uint8),
+            np.array([kniffel.dice[2]], dtype=np.uint8),
+            np.array([kniffel.dice[3]], dtype=np.uint8),
+            np.array([kniffel.dice[4]], dtype=np.uint8),
             get_score(kniffel.scores.get(Category.ACES)),
             get_score(kniffel.scores.get(Category.TWOS)),
             get_score(kniffel.scores.get(Category.THREES)),
@@ -91,6 +85,8 @@ class KniffelSingleEnv(Env):
 
     def step(self, action: int):
         kniffel = self.kniffel
+        truncated = False
+        finished = False
         try:
             reward = kniffel.take_action(action)
             finished = kniffel.is_finished()
@@ -98,23 +94,21 @@ class KniffelSingleEnv(Env):
         except Exception:
             valid_move = False
             reward = 0
-            if self.game_type == GameType.SUDDEN_DEATH:
-                log.info('Invalid action, terminating round.')
-                finished = True
-            else:  # retry on wrong action
-                log.info('Invalid action, step ignored.')
-                finished = False
+            truncated = True
 
         log.info(f'Finished step. Reward: {reward}, Finished: {finished}')
         debug_info = {
             'valid_move': valid_move,
+            'action_description': kniffel.get_action_description(action)
         }
-        return self.get_observation_space(), reward, finished, debug_info
+        return self.get_observation_space(), reward, finished, truncated, debug_info
 
-    def reset(self, seed=None, opponent=None):
+    def reset(self, seed=None, opponent=None, options=None):
         self.kniffel = Kniffel()
+        return self.get_observation_space(), {}
 
-    def render(self, mode='human', close=False):
+    def render(self):
+        assert self.render_mode == 'human'
         dice = self.kniffel.dice
         outfile = sys.stdout
         outfile.write(f'Dice: {dice[0]} {dice[1]} {dice[2]} {dice[3]} {dice[4]} '
