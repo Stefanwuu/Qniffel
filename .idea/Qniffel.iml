@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240122_210001-9f9vsv1s/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240122_210013-33fkvhmo/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240122_210224-0ybnhdqk/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240122_220516-tloq6eds/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240122_223252-ei4j3ncy/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_011044-svr8uyex/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_023310-we6grhsf/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_023315-71aoh9l5/files" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_023315-71aoh9l5/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_023436-t30qrsaq/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_040127-eqohfyk4/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/training/train/wandb/run-20240123_101429-bxyesnkh/tmp" />
+    </content>
+    <orderEntry type="jdk" jdkName="rl" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
