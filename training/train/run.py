@@ -22,28 +22,32 @@ config = {'name': 'baseline', 'hidden_size': 128, 'num_hidden_layers': 2, 'batch
 config_double = copy.deepcopy(config)
 config_double['double_dqn'] = True
 config_double['name'] = 'ddqn_baseline'
-double = dqn.DQNAgent(env, config_double)
-double.train()
+#double = dqn.DQNAgent(env, config_double)
+#double.train()
 
 # num episodes tuning: 90.8
 config_long = copy.deepcopy(config)
 config_long['num_episodes'] = 10000
 config_long['name'] = '10000ep'
-long = dqn.DQNAgent(env, config_long)
-long.train()
+#long = dqn.DQNAgent(env, config_long)
+#long.train()
 
 # target update tuning
 # 200 not converged
+# 500: 61.1
+# 1100: 84.8
 config_target = copy.deepcopy(config)
-for update in [200, 500, 1100]:
+for update in [1500, 2000]:  #[200, 500, 1100]:
     config_target['target_update'] = update
     config_target['name'] = 'target_update_' + str(update)
     target = dqn.DQNAgent(env, config_target)
     target.train()
 
 # lr tuning
+# 8e-5: 61.5
+# 3e-4: 94.3
 config_lr = copy.deepcopy(config)
-for lr in [3e-4, 8e-5, 5e-5]:
+for lr in [2e-4, 5e-4]:  #[3e-4, 8e-5]:
     config_lr['lr'] = lr
     config_lr['name'] = 'lr_' + str(lr)
     lr = dqn.DQNAgent(env, config_lr)

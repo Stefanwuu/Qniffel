@@ -90,7 +90,7 @@ class DQNAgent(agent):
         return one_hot_list
 
     def transform_state(self, state):
-        # convert gym observation to one-hot tensor([1, F])
+        # convert gym observation to one-hot feature tensor([1, 112])
         final_list = []
         final_list += self.get_one_hot(state[0], 0, 12)  # round
         final_list += self.get_one_hot(state[1], 0, 2)  # sub_round
