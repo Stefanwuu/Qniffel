@@ -11,6 +11,7 @@ The plan is to test two different reinforcement learning algorithms. One is the 
 which was applied [here](https://web.stanford.edu/class/aa228/reports/2018/final75.pdf) for the game of Yahtzee. 
 The other one is the [advantage actor-critic algorithm](https://arxiv.org/abs/1602.01783)(A2C), whose performance was reported [here](https://dionhaefner.github.io/2021/04/yahtzotron-learning-to-play-yahtzee-with-advantage-actor-critic/#pre-training-via-advantage-look-up-table) for the game of Yahtzee.
 ### Model
+- We only optimize the agent under single-player mode. Multi-player mode is although potentially helpful for training, it could be difficult for agent to learn the strategy(see discussion [here](https://web.stanford.edu/class/aa228/reports/2018/final75.pdf)).
 - Augmented input feature similar to [this paper](https://web.stanford.edu/class/aa228/reports/2018/final75.pdf) is used. 
 The 112-dimensional input feature encodes the current round of the game, the current dice roll, sum of dice, availability of score categories, and current upper scores(for bonus).
 - Invalid action masking is used to prevent the agent from choosing invalid actions in the game(e.g. choosing already used score category).
