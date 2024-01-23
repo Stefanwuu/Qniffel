@@ -36,20 +36,33 @@ config_long['name'] = '10000ep'
 # 200 not converged
 # 500: 61.1
 # 1100: 84.8
+# 1500: 91.7
+# 2000: 94.1
 config_target = copy.deepcopy(config)
 for update in [1500, 2000]:  #[200, 500, 1100]:
     config_target['target_update'] = update
     config_target['name'] = 'target_update_' + str(update)
-    target = dqn.DQNAgent(env, config_target)
-    target.train()
+    #target = dqn.DQNAgent(env, config_target)
+    #target.train()
 
 # lr tuning
 # 8e-5: 61.5
 # 3e-4: 94.3
+# 2e-4: not converged!(why?)
 config_lr = copy.deepcopy(config)
-for lr in [2e-4, 5e-4]:  #[3e-4, 8e-5]:
+for lr in [3e-4, 8e-5]:
     config_lr['lr'] = lr
     config_lr['name'] = 'lr_' + str(lr)
-    lr = dqn.DQNAgent(env, config_lr)
-    lr.train()
+    #lr = dqn.DQNAgent(env, config_lr)
+    #lr.train()
 
+# combine best parameters
+# use lr 1e-4 for more stable training
+config_best = copy.deepcopy(config)
+config_best['target_update'] = 2000
+config_best['name'] = 'best'
+config_best['num_episodes'] = 10000
+config_best['double_dqn'] = True
+config_best['test_episodes'] = [9300, 9600]
+best = dqn.DQNAgent(env, config_best)
+best.train()
