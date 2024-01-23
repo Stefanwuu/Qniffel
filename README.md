@@ -22,9 +22,9 @@ The 112-dimensional input feature encodes the current round of the game, the cur
 The gym environment is mostly from [this repository](https://github.com/villebro/gym-yahtzee) with some modification of joker rules and debugging.
 All the experimental results are available on [wandb](https://wandb.ai/naiv/Qniffel?workspace=user-naiv).
 For simplicity, all training is done on a MacBook Pro with M1 Pro chip using the mps backend extension of pytorch.
-### performance
+### Performance
 
-| Agent                                                                                                                                                             | avg score on 3000 games |
+| Agent                                                                                                                                                             | avg score in 3000 games |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
 | random                                                                                                                                                            | 46.5                    |
 | greedy                                                                                                                                                            | TODO                    | 
