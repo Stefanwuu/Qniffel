@@ -39,9 +39,9 @@ For simplicity, all training is done on a MacBook Pro with M1 Pro chip using the
 | A2C in [article](https://dionhaefner.github.io/2021/04/yahtzotron-learning-to-play-yahtzee-with-advantage-actor-critic/#pre-training-via-advantage-look-up-table) | 239.7                   |
 
 ## iOS App
-### functionality
+### Core functionality
 - Detection and understanding of dice roll as in [example](https://developer.apple.com/documentation/vision/understanding_a_dice_roll_with_vision_and_object_detection) using Vision framework
-- Understandable instruction for user to roll the dice
-- Recognition and handling the situation where the instruction is not followed
-- Correct loading of Pytorch model + feature conversion
+- Correct feature conversion and forwarding of pytorch model 
+- Understandable instruction for user to roll the dice based on the decision
+- Recognizing and handling the situation where the instruction is not followed
 - Automatic calculation of score
