@@ -42,6 +42,6 @@ For simplicity, all training is done on a MacBook Pro with M1 Pro chip using the
 ### functionality
 - Detection and understanding of dice roll as in [example](https://developer.apple.com/documentation/vision/understanding_a_dice_roll_with_vision_and_object_detection) using Vision framework
 - Understandable instruction for user to roll the dice
-- Correct handling of impossible state transition by user
+- Recognition and handling the situation where the instruction is not followed
 - Correct loading of Pytorch model + feature conversion
 - Automatic calculation of score
