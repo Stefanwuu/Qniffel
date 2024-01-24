@@ -28,7 +28,7 @@ For simplicity, all training is done on a MacBook Pro with M1 Pro chip using the
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
 | random                                                                                                                                                            | 46.5                    |
 | greedy                                                                                                                                                            | TODO                    | 
-| DQN                                                                                                                                                               | 94.3                    |
+| DQN                                                                                                                                                               | 106.5                   |
 | DQN in [paper](https://web.stanford.edu/class/aa228/reports/2018/final75.pdf)                                                                                     | 77.8                    |
 | A2C                                                                                                                                                               | TODO                    |
 | A2C in [article](https://dionhaefner.github.io/2021/04/yahtzotron-learning-to-play-yahtzee-with-advantage-actor-critic/#pre-training-via-advantage-look-up-table) | 239.7                   |

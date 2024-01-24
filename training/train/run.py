@@ -58,6 +58,7 @@ for lr in [3e-4, 8e-5]:
 
 # combine best parameters
 # use lr 1e-4 for more stable training
+# 106.5
 config_best = copy.deepcopy(config)
 config_best['target_update'] = 2000
 config_best['name'] = 'best'
