@@ -1,10 +1,10 @@
 # Qniffel
-A reinforcement learning based APP to play the dice game Kniffel(Yahtzee)
+A reinforcement learning based App to play the dice game Kniffel(Yahtzee)
 
 ## General information
-The final goal of this project is to build an app that plays the game Kniffel(english: Yahtzee) automatically with super-human performance. More about the game can be found [here](https://en.wikipedia.org/wiki/Yahtzee).
-The project contains two main parts: the training of a Kniffel agent using reinforcement learning and the implementation of an iOS APP that plays Kniffel with physical dice based on the trained agent.
-The training is based on open-ai gym and Pytorch. The iOS APP will be implemented using SwiftUI.  
+The final goal of this project is to build an App that plays the game Kniffel(english: Yahtzee) automatically with super-human performance. More about the game can be found [here](https://en.wikipedia.org/wiki/Yahtzee).
+The project contains two main parts: the training of a Kniffel agent using reinforcement learning and the implementation of an iOS App that plays Kniffel with physical dice based on the trained agent.
+The training is based on open-ai gym and Pytorch. The iOS App will be implemented using SwiftUI.  
 
 ## RL agent training
 The plan is to test two different reinforcement learning algorithms. One is the [deep Q-network](https://arxiv.org/abs/1312.5602)(DQN), 
@@ -38,7 +38,7 @@ For simplicity, all training is done on a MacBook Pro with M1 Pro chip using the
 | A2C                                                                                                                                                               | TODO                    |
 | A2C in [article](https://dionhaefner.github.io/2021/04/yahtzotron-learning-to-play-yahtzee-with-advantage-actor-critic/#pre-training-via-advantage-look-up-table) | 239.7                   |
 
-## iOS APP
+## iOS App
 ### functionality
 - Detection and understanding of dice roll as in [example](https://developer.apple.com/documentation/vision/understanding_a_dice_roll_with_vision_and_object_detection) using Vision framework
 - Understandable instruction for user to roll the dice
